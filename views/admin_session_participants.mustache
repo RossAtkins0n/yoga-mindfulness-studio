@@ -1,0 +1,42 @@
+{{> head}}
+{{> header}}
+
+<h1>Session Participants</h1>
+
+<p class="muted">Course: {{course.title}}</p>
+<p class="muted">Session start: {{session.startDateTime}}</p>
+<p class="muted">Session end: {{session.endDateTime}}</p>
+<p class="muted">Capacity: {{session.capacity}} • Booked: {{session.bookedCount}}</p>
+
+<p>
+  <a class="btn" href="/admin/courses/{{course.id}}/sessions">Back to Sessions</a>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Booking Type</th>
+      <th>Booked At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#participants}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>{{type}}</td>
+        <td>{{bookedAt}}</td>
+      </tr>
+    {{/participants}}
+
+    {{^participants}}
+      <tr>
+        <td colspan="4">No participants yet.</td>
+      </tr>
+    {{/participants}}
+  </tbody>
+</table>
+
+{{> footer}}

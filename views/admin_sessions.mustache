@@ -1,0 +1,37 @@
+{{> head}}
+{{> header}}
+
+<h1>Manage Sessions</h1>
+<p class="muted">Course: {{course.title}}</p>
+
+<p>
+  <a class="btn" href="/admin/courses/{{course.id}}/sessions/new">Add New Session</a>
+  <a class="btn" href="/admin/courses">Back to Courses</a>
+</p>
+
+<div class="cards">
+  {{#sessions}}
+    <article class="card">
+      <h2>Session</h2>
+      <p>Start: {{startDateTime}}</p>
+      <p>End: {{endDateTime}}</p>
+      <p>Capacity: {{capacity}}</p>
+      <p>Booked: {{bookedCount}}</p>
+
+      <p>
+        <a class="btn" href="/admin/sessions/{{id}}/edit">Edit</a>
+        <a class="btn" href="/admin/sessions/{{id}}/participants">Participants</a>
+      </p>
+
+      <form method="post" action="/admin/sessions/{{id}}/delete">
+        <button class="btn" type="submit">Delete</button>
+      </form>
+    </article>
+  {{/sessions}}
+
+  {{^sessions}}
+    <p>No sessions yet.</p>
+  {{/sessions}}
+</div>
+
+{{> footer}}

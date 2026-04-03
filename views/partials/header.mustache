@@ -1,0 +1,32 @@
+<header class="site-header">
+  <div class="branding">
+    <h1 class="site-title">Yoga &amp; Mindfulness Studio 🧘🏻‍♀️</h1>
+    <p class="site-tagline">Classes, workshops, and mindful movement</p>
+  </div>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/courses">Courses</a>
+
+    {{#user}}
+      <a href="/my-bookings">My Bookings</a>
+
+      {{#isOrganiser}}
+        <a href="/admin">Admin</a>
+      {{/isOrganiser}}
+
+      <span class="muted">Signed in as {{name}}</span>
+
+      <form method="post" action="/logout" style="display:inline;">
+        <button class="btn" type="submit">Logout</button>
+      </form>
+    {{/user}}
+
+    {{^user}}
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    {{/user}}
+  </nav>
+
+  <hr>
+</header>

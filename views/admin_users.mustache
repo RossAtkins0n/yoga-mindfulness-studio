@@ -1,0 +1,55 @@
+{{> head}}
+{{> header}}
+
+<h1>Manage Users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#users}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>{{role}}</td>
+        <td>
+          {{^isCurrentUser}}
+            {{#isOrganiser}}
+              <form method="post" action="/admin/users/{{id}}/demote" style="display:inline;">
+                <button class="btn" type="submit">Make Student</button>
+              </form>
+            {{/isOrganiser}}
+
+            {{^isOrganiser}}
+              <form method="post" action="/admin/users/{{id}}/promote" style="display:inline;">
+                <button class="btn" type="submit">Make Organiser</button>
+              </form>
+            {{/isOrganiser}}
+
+            <form method="post" action="/admin/users/{{id}}/delete" style="display:inline;">
+              <button class="btn" type="submit">Delete</button>
+            </form>
+          {{/isCurrentUser}}
+
+          {{#isCurrentUser}}
+            <span class="muted">Current account</span>
+          {{/isCurrentUser}}
+        </td>
+      </tr>
+    {{/users}}
+
+    {{^users}}
+      <tr>
+        <td colspan="4">No users found.</td>
+      </tr>
+    {{/users}}
+  </tbody>
+</table>
+
+{{> footer}}

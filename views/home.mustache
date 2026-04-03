@@ -1,0 +1,43 @@
+{{> head}}
+{{> header}}
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Welcome to Yoga &amp; Mindfulness Studio</h1>
+    <p class="lead">
+      We offer weekly yoga courses and weekend mindfulness workshops designed for different
+      levels of fitness and experience. Join us for guided movement, breathing, relaxation,
+      and mindful practice in a calm and supportive environment.
+    </p>
+    <p class="muted">
+      Location: Glasgow studio venue with scheduled weekly classes and selected weekend workshops.
+    </p>
+  </div>
+</section>
+
+<main class="wrap">
+  <section>
+    <h2>Upcoming Courses</h2>
+
+    <div class="cards">
+      {{#courses}}
+      <article class="card">
+        <h3><a href="/courses/{{id}}">{{title}}</a></h3>
+        <p class="muted">
+          Level: {{level}} • Type: {{type}} {{#allowDropIn}}• Drop-in OK{{/allowDropIn}}
+        </p>
+        <p>{{description}}</p>
+        <p class="muted">Dates: {{startDate}} – {{endDate}}</p>
+        <p class="muted">Next session: {{nextSession}} • Sessions: {{sessionsCount}}</p>
+        <p><a class="btn primary" href="/courses/{{id}}">View &amp; Book</a></p>
+      </article>
+      {{/courses}}
+
+      {{^courses}}
+      <p>No courses available yet.</p>
+      {{/courses}}
+    </div>
+  </section>
+</main>
+
+{{> footer}}

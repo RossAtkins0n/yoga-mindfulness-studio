@@ -1,0 +1,31 @@
+{{> head}}
+{{> header}}
+
+<h1>Manage Courses</h1>
+
+<p><a class="btn" href="/admin/courses/new">Add New Course</a></p>
+
+<div class="cards">
+  {{#courses}}
+    <article class="card">
+      <h2>{{title}}</h2>
+      <p>{{level}} • {{type}}</p>
+      <p>{{startDate}} – {{endDate}}</p>
+
+      <p>
+        <a class="btn" href="/admin/courses/{{id}}/edit">Edit</a>
+        <a class="btn" href="/admin/courses/{{id}}/sessions">Sessions</a>
+      </p>
+
+      <form method="post" action="/admin/courses/{{id}}/delete">
+        <button class="btn" type="submit">Delete</button>
+      </form>
+    </article>
+  {{/courses}}
+
+  {{^courses}}
+    <p>No courses yet.</p>
+  {{/courses}}
+</div>
+
+{{> footer}}

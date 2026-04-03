@@ -1,0 +1,47 @@
+{{> head}}
+{{> header}}
+
+<section>
+  <h1>Courses</h1>
+
+  <form method="get" action="/courses" class="filters">
+    <label>
+      Level
+      <select name="level">
+        <option value="" {{^filters.level}}selected{{/filters.level}}>Any</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </label>
+
+    <label>
+      Search
+      <input type="search" name="q" value="{{filters.q}}" placeholder="Title or description">
+    </label>
+
+    <button class="btn" type="submit">Apply</button>
+    <a class="btn" href="/courses">Reset</a>
+  </form>
+</section>
+
+<div class="cards">
+  {{#courses}}
+  <article class="card">
+    <h2><a href="/courses/{{id}}">{{title}}</a></h2>
+    <p class="muted">
+      Level: {{level}} • Type: {{type}} {{#allowDropIn}}• Drop-in OK{{/allowDropIn}}
+    </p>
+    <p>{{description}}</p>
+    <p class="muted">Dates: {{startDate}} – {{endDate}}</p>
+    <p class="muted">Next session: {{nextSession}} • Sessions: {{sessionsCount}}</p>
+    <p><a class="btn" href="/courses/{{id}}">View &amp; Book</a></p>
+  </article>
+  {{/courses}}
+
+  {{^courses}}
+    <p>No courses match your filters.</p>
+  {{/courses}}
+</div>
+
+{{> footer}}

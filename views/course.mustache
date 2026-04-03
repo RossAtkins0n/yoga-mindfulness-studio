@@ -1,0 +1,56 @@
+{{> head}}
+{{> header}}
+
+<article>
+  <h1>{{course.title}}</h1>
+  <p class="muted">
+    Level: {{course.level}} • Type: {{course.type}} {{#course.allowDropIn}}• Drop-in available{{/course.allowDropIn}}
+  </p>
+  <p>{{course.description}}</p>
+  <p class="muted">Dates: {{course.startDate}} – {{course.endDate}}</p>
+  <p class="muted">Location: {{course.location}}</p>
+  <p class="muted">Price: £{{course.price}}</p>
+
+  <section>
+    <h2>Book the full course</h2>
+    <form method="post" action="/courses/{{course.id}}/book">
+      <button class="btn primary" type="submit">Book full course</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Sessions</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Capacity</th>
+          <th>Booked</th>
+          <th>Remaining</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#sessions}}
+        <tr>
+          <td>{{start}}</td>
+          <td>{{end}}</td>
+          <td>{{capacity}}</td>
+          <td>{{booked}}</td>
+          <td>{{remaining}}</td>
+          <td>
+            <form method="post" action="/sessions/{{id}}/book">
+              <button class="btn" type="submit" {{#isFull}}disabled{{/isFull}}>
+                Book this session
+              </button>
+            </form>
+          </td>
+        </tr>
+        {{/sessions}}
+      </tbody>
+    </table>
+  </section>
+</article>
+
+{{> footer}}
